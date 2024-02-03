@@ -1,10 +1,9 @@
 let search = (arr, strToFind) => {
     let result = [];
+    let regexep = new RegExp(strToFind)
     for (const doc of arr){
-        let subArr = doc.text.split(' ');
-        console.log(subArr)
-        
-        if (subArr.includes(e => e === strToFind)){
+        let resultRegexp = doc.text.match(regexep);
+        if (resultRegexp !== null){
             result.push(doc.id)
         }
     }
