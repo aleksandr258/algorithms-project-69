@@ -1,9 +1,13 @@
 let search = (arr, strToFind) => {
     let result = [];
-    let regexep = new RegExp(strToFind, 'g');
+    let strForRegexp = strToFind.split(' ').map(word => `\\b${word}\\b`).join('|');
+    console.log(strForRegexp)
+
+    let regexep = new RegExp(strForRegexp, 'g');
     for (const doc of arr){
         let resultRegexp = doc.text.match(regexep);
         if (resultRegexp !== null){
+            console.log(resultRegexp)
             result.push({
                 count: resultRegexp.length,
                 id: doc.id
@@ -38,11 +42,12 @@ let search = (arr, strToFind) => {
     // console.log(findCountArr)
     // let result = findCountArr.sort((a,b) => a.count - b.count);
     result.sort((a,b) => b.count - a.count);
+    console.log(result)
     return result.map(e => e.id)
 }
 // src/index.js
 // const search = (documents, searchString) => {
-//     return documents
+//     return document
 //       .filter(doc => doc.text.includes(searchString))
 //       .map(doc => doc.name);
 //   };
