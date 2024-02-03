@@ -1,13 +1,44 @@
 let search = (arr, strToFind) => {
     let result = [];
-    let regexep = new RegExp(strToFind)
+    let regexep = new RegExp(strToFind, 'g');
     for (const doc of arr){
         let resultRegexp = doc.text.match(regexep);
         if (resultRegexp !== null){
-            result.push(doc.id)
+            result.push({
+                count: resultRegexp.length,
+                id: doc.id
+            })
         }
     }
-    return result
+    // arr.reduce((prev, current) => {
+    //     let match = current.text.match(regexep);
+    //     if (match){
+    //         let matchLength = match.length;
+    //     }
+    //     if (matchLength > prev){
+    //         prev = matchLength;
+    //         result.push(current.id)
+    //     }
+    //     return result;
+
+    // }, {})
+    // findCountArr = arr.map(e => {
+    //     let textOfArr = e.text.match(regexep)
+    //     if (textOfArr !== null){
+    //         return {
+    //             count: textOfArr.length,
+    //             id: e.id
+    //         }
+    //     } 
+    //     else return {
+    //         count: 0,
+    //         id: e.id
+    //     }   
+    // })
+    // console.log(findCountArr)
+    // let result = findCountArr.sort((a,b) => a.count - b.count);
+    result.sort((a,b) => b.count - a.count);
+    return result.map(e => e.id)
 }
 // src/index.js
 // const search = (documents, searchString) => {
