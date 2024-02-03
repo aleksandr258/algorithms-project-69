@@ -16,12 +16,12 @@ test('should return an array of document IDs containing the search string', () =
     const documents = [
       { id: 1, text: 'Lorem ipsum dolor sit amet' },
       { id: 2, text: 'elit sed elit' },
-      { id: 3, text: 'sed do eiusmod elit tempor incididunt ut labore' },
+      { id: 3, text: 'sed do eiusmod elit elit elit elit tempor incididunt ut labore' },
     ];
   
     const result = search(documents, 'elit');
   
-    expect(result).toEqual([2, 3]);
+    expect(result).toEqual([3, 2]);
   });
   
   test('should return an empty array if the search string is not found in any document', () => {
